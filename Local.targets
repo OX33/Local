@@ -1,0 +1,16 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(IsPackable)' != 'false'">
+    <PackageOutputPath>$(NuGetLocalFeed)</PackageOutputPath>
+    <GeneratePackageOnBuild Condition="'$(BuildingInsideVisualStudio)' == 'true'">true</GeneratePackageOnBuild>
+  </PropertyGroup>
+  
+  <!-- Deletes the cache of the current package -->
+  <Target Name="CopyPackage" AfterTargets="Pack" Condition="'$(BuildingInsideVisualStudio)' == 'true'">
+    <ItemGroup>
+      <DirectoriesToDelete Include="$(UserProfile)\.nuget\packages\$(PackageId)" />
+    </ItemGroup>
+    <RemoveDir Directories="@(DirectoriesToDelete)" />
+
+    <Warning Text="Create an environment variable 'NuGetLocalFeed' that points to your local NuGet feed." Condition="'$(NuGetLocalFeed)' == ''" />
+  </Target>
+</Project>

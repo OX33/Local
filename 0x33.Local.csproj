@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.0</TargetFramework>
+    <Authors>0x33</Authors>
+    <Copyright>0x33.io</Copyright>
+    <PackageIconUrl>http://cdn.0x33.io/NuGet.0x33.png</PackageIconUrl>
+    <RepositoryType>VSTS</RepositoryType>
+    <RepositoryUrl>0x33.visualstudio.com</RepositoryUrl>
+    <PackageId>Local</PackageId>
+    <Product>Local</Product>
+    <Description>Creates a NuGet package of your project straight into the local feed and then deletes cached versions of your package.</Description>
+    <MinClientVersion>4.0.0</MinClientVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Local.targets">
+      <Pack>true</Pack>
+      <PackagePath>build</PackagePath>
+    </Content>
+  </ItemGroup>
+
+  <Import Project="Local.targets" />
+
+</Project>
